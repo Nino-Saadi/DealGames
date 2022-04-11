@@ -1,1 +1,23 @@
 @import "~bootstrap/scss/bootstrap";
+@font-face {
+    font-family: "Futura";
+    src: url("font/Futura Light font.ttf"),
+         url("font/Futura Light Italic font.ttf"),
+         url("font/Futura Bold Italic font.ttf");
+}
+
+
+html{
+    height: 100%;
+}
+body{
+    position: relative;
+    min-height: 100%;
+    font-family: "Futura", serif;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
