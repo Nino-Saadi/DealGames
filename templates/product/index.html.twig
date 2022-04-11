@@ -1,10 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}Product index{% endblock %}
 
 {% block body %}
+    <h1 class="text-center">Produits</h1>
 
-<div class="example-wrapper">
-    <h1 class="text-center">{{ controller_name }}! </h1>
-</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name_product</th>
+                <th>Price_product</th>
+                <th>Desc_product</th>
+                <th>Date_product</th>
+                <th>Img_product</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.nameProduct }}</td>
+                <td>{{ product.priceProduct }}</td>
+                <td>{{ product.descProduct }}</td>
+                <td>{{ product.dateProduct ? product.dateProduct|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.imgProduct }}</td>
+                <td>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_product_new') }}">Create new</a>
 {% endblock %}
