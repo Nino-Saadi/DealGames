@@ -9,11 +9,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name_product</th>
-                <th>Price_product</th>
-                <th>Desc_product</th>
-                <th>Date_product</th>
-                <th>Img_product</th>
+                <th>Nom du Produit</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Date de publication</th>
+                <th>Image</th>
+                <th>Catégorie</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,11 +22,12 @@
         {% for product in products %}
             <tr>
                 <td>{{ product.id }}</td>
-                <td>{{ product.nameProduct }}</td>
+                <td>{{ product }}</td>
                 <td>{{ product.priceProduct }}</td>
                 <td>{{ product.descProduct }}</td>
-                <td>{{ product.dateProduct ? product.dateProduct|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.dateProduct ? product.dateProduct|date('d-m-Y') : '' }}</td>
                 <td>{{ product.imgProduct }}</td>
+                <td>{{ product.category }}</td>
                 <td>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>

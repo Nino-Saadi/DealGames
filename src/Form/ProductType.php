@@ -3,8 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Product;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -15,9 +19,13 @@ class ProductType extends AbstractType
         $builder
             ->add('name_product', TextType::class)
             ->add('price_product')
-            ->add('desc_product')
-            ->add('date_product')
-            ->add('img_product')
+            ->add('desc_product', TextareaType::class)
+            ->add('category', EntityType::class, [
+                  'class'=>Category::class,
+                  'choice_label'=>'name_category',
+              ])
+            ->add('imgFile', VichImageType::class)
+
         ;
     }
 

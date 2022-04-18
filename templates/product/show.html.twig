@@ -12,23 +12,23 @@
                 <td>{{ product.id }}</td>
             </tr>
             <tr>
-                <th>Name_product</th>
-                <td>{{ product.nameProduct }}</td>
+                <th>Nom du Produit</th>
+                <td>{{ product}}</td>
             </tr>
             <tr>
-                <th>Price_product</th>
+                <th>Prix de départ</th>
                 <td>{{ product.priceProduct }}</td>
             </tr>
             <tr>
-                <th>Desc_product</th>
+                <th>Description</th>
                 <td>{{ product.descProduct }}</td>
             </tr>
             <tr>
-                <th>Date_product</th>
-                <td>{{ product.dateProduct ? product.dateProduct|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de Publication</th>
+                <td>{{ product.dateProduct ? product.dateProduct|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Img_product</th>
+                <th>Image</th>
                 <td>{{ product.imgProduct }}</td>
             </tr>
         </tbody>
