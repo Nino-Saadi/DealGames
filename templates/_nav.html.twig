@@ -19,6 +19,11 @@
             <li class="nav-item active">
                 <a class="nav-link text-light" href="">Connecté en tant que {{ app.user.name }}</a>
             </li>
+            {% if "ROLE_ADMIN" in app.user.roles  %}
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="{{ path('app_admin') }}">Tableau de Bord</a>
+            </li>
+            {% endif %}
             <li class="nav-item active">
                 <a class="nav-link text-light" href="{{ path('app_logout') }}">Se Déconnecter</i></a>
             </li>        
