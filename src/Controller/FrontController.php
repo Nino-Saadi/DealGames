@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Repository\ProductRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,9 +20,20 @@ class FrontController extends AbstractController
         $products = $productRepository->findAll();
         return $this->render('front/index.html.twig', [
             'products' => $products,
-            'controller_name' => 'Bienvenu sur DealGames',
+            'controller_name' => 'DealGames',
         ]);
     }
+
+    #[IsGranted("ROLE_USER")]
+    #[Route('/account/{id}', name: 'app_account')]
+    public function myAccount(User $user): Response
+    {
+        return $this->render('front/account.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+
 
     // #[Route('/inscription', name: 'app_inscription')]
     // public function inscription(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher)

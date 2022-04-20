@@ -45,6 +45,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
     public function show(Product $product): Response
     {
@@ -53,9 +54,12 @@ class ProductController extends AbstractController
         ]);
     }
     
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
     {
+        $this->denyAccessUnlessGranted("PRODUCT_EDIT", $product);
+
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
@@ -70,9 +74,13 @@ class ProductController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {
+
+        $this->denyAccessUnlessGranted("PRODUCT_DELETE", $product);
+
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product);
         }

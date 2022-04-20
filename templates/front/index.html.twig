@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ controller_name }}{% endblock %}
 
 {% block body %}
 
 <div class="example-wrapper ">
-    <h1 class="text-center">{{ controller_name }}! </h1>
+    <h1 class="text-center">Bienvenu sur {{ controller_name }}! </h1>
     <h2 class="text-center">Dealgames le meilleur site pour échangers vos jeux vidéos ou console</h2>
 </div>
 
-<div class="example-wrapper m-5">
+<div class="example-wrapper m-3">
     <h1 class="text-center">Derniers annonces </h1>
 </div>
 <div class="container">
     <div class="row ">
     {% for product in products %}
      <div class=" card col-lg-3 md-8">
-        <img class="card-img-top" src="{{ vich_uploader_asset(product) }}" alt="Card image cap">
+        <div class="ratio ratio-4x3"><img class="card-img-top imgCorrect" src="{{ vich_uploader_asset(product) }}" alt="Card image cap"></div>
         <div class="card-body">
           <h5 class="card-title">{{product}}</h5>
           <p class="card-text">{{ product.descProduct }}</p>

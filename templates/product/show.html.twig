@@ -3,40 +3,26 @@
 {% block title %}Produits{% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Nom du Produit</th>
-                <td>{{ product}}</td>
-            </tr>
-            <tr>
-                <th>Prix de départ</th>
-                <td>{{ product.priceProduct }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.descProduct }}</td>
-            </tr>
-            <tr>
-                <th>Date de Publication</th>
-                <td>{{ product.dateProduct ? product.dateProduct|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ product.imgProduct }}</td>
-            </tr>
-            <tr>
-                <th>Annonceurs</th>
-                <td>{{ product.user.name }}</td>
-            </tr>
-            <tr>
-                <th>Categorie</th>
-                <td>{{ product.category.nameCategory }}</td>
-            </tr>
-        </tbody>
-
+<div class="container">
+    <div class="row">
+        <div class="col">
+         <img class="img-fluid img-thumbnail"src="{{ vich_uploader_asset(product) }}" alt="{{product}}">
+            <div class="row">
+                <p>Annonce posté par l'utilisateur <strong>{{ product.user.name }}</strong></p>
+                <p>Catégorie : {{ product.category.nameCategory }}</p>
+                <p>Publié le {{ product.dateProduct ? product.dateProduct|date('d-m-Y') : '' }}</p>
+            </div>
+        </div>
+        <div class="col">
+            <h1>{{ product}}</h1>
+            <div class="row">
+                <h2>Description</h2>
+                <p>{{ product.descProduct }}</p>
+            </div>
+        </div>
+    </div>
+</div>
     {% if app.user == product.user %}
     <a href="{{ path('app_product_index') }}">Voir mes produits</a>
 

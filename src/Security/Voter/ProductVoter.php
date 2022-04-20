@@ -9,8 +9,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class ProductVoter extends Voter
 {
-    public const EDIT = 'POST_EDIT';
-    public const VIEW = 'POST_VIEW';
+    public const EDIT = 'PRODUCT_EDIT';
+    public const DELETE = 'PRODUCT_DELETE';
 
     private $security;
 
@@ -23,7 +23,7 @@ class ProductVoter extends Voter
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
+        return in_array($attribute, [self::EDIT, self::DELETE])
             && $subject instanceof \App\Entity\Product;
     }
 
@@ -36,18 +36,18 @@ class ProductVoter extends Voter
         }
 
         if ($this->security->isGranted("ROLE_ADMIN")) {
-            return false;
+            return true;
         }
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case self::EDIT:
                 // logic to determine if the user can EDIT
-                // return true or false
+                return $user === $subject->getUser();
                 break;
-            case self::VIEW:
-                // logic to determine if the user can VIEW
-                // return true or false
+            case self::DELETE:
+                // logic to determine if the user can DELETE
+                return $user === $subject->getUser();
                 break;
         }
 
