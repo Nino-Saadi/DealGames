@@ -17,7 +17,7 @@
                 <a class="nav-link text-light" href="{{ path('app_product_index') }}">Voir mes produits</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link text-light" href="">Connecté en tant que {{ app.user.name }}</a>
+                <a class="nav-link text-light" href="{{ path('app_account', {id:app.user.id}) }}">Connecté en tant que {{ app.user.name }}</a>
             </li>
             {% if "ROLE_ADMIN" in app.user.roles  %}
             <li class="nav-item active">

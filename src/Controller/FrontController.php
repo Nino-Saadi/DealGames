@@ -25,7 +25,7 @@ class FrontController extends AbstractController
     }
 
     #[IsGranted("ROLE_USER")]
-    #[Route('/account/{id}', name: 'app_account')]
+    #[Route('/{id}', name: 'app_account')]
     public function myAccount(User $user): Response
     {
         return $this->render('front/account.html.twig', [
